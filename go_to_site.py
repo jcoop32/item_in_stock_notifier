@@ -4,8 +4,6 @@ from selenium.webdriver.firefox.service import Service
 
 from selenium.webdriver.firefox.options import Options
 
-# from selenium.webdriver.chrome.options import Options
-
 from send_text import send_message_one, send_message
 from refresh_page import countdown
 
@@ -18,9 +16,8 @@ service = Service(
 options = Options()
 options.add_argument("--headless")
 
-driver = webdriver.Firefox(options=options)
-# driver = webdriver.Firefox()
-# driver = webdriver.Chrome()
+# driver = webdriver.Firefox(options=options)
+driver = webdriver.Firefox()
 
 limit = 1000
 
@@ -38,19 +35,23 @@ def go_to_site(url):
         countdown(int(10))
         if btn_inner_text != "Out Of Stock":
             time.sleep(1)
-            send_message(
-                "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
-            )
+            # send_message(
+            #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
+            # )
+            send_message_one("2242458826", "att", f"Item back in stock go to \n{url}")
         if x % 3 == 0:
             time.sleep(1)
             item_status = (
                 "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
             )
-            send_message(
-                "2242458826",
-                "8473854005",
-                "att",
-                f"Update on item: {item_status} \n {url}",
+            # send_message(
+            #     "2242458826",
+            #     "8473854005",
+            #     "att",
+            #     f"Update on item: {item_status} \n {url}",
+            # )
+            send_message_one(
+                "2242458826", "att", f"Update on item: {item_status} \n {url}"
             )
         print("refreshing...")
         driver.refresh()

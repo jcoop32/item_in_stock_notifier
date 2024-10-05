@@ -1,5 +1,4 @@
 import smtplib
-import sys
 import yaml
 from email.mime import text
 
@@ -51,16 +50,3 @@ def send_message_one(phone_number, carrier, msg):
         print("Message Sent")
     except Exception as e:
         print(e)
-
-
-if __name__ == "__main__":
-    if len(sys.argv) < 4:
-        print(f"Usage: python3 {sys.argv[0]} <PHONE_NUMBER> <CARRIER> <MESSAGE>")
-        sys.exit(0)
-
-    phone_number = sys.argv[1]
-    phone_number2 = sys.argv[2]
-    carrier = sys.argv[3]
-    message = sys.argv[4]
-
-    send_message(phone_number, phone_number2, carrier, message)
