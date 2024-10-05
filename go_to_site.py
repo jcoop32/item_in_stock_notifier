@@ -16,8 +16,8 @@ service = Service(
 options = Options()
 options.add_argument("--headless")
 
-# driver = webdriver.Firefox(options=options)
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(options=options)
+# driver = webdriver.Firefox()
 
 limit = 1000
 
@@ -58,3 +58,16 @@ def go_to_site(url):
         print("refreshed")
         x += 1
         print("refresh " + str(x))
+
+
+def test_site():
+    print("Loading test site")
+    driver.get("https://www.google.com")
+    time.sleep(5)
+    print(f"On Test Site: {driver.current_url}")
+    print("Testing refresh...")
+    driver.refresh()
+    time.sleep(3)
+    print(f"Refresh Complete. \n On {driver.current_url}")
+    print("Test Complete")
+    driver.quit()
