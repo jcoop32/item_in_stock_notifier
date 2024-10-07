@@ -11,7 +11,8 @@ import time
 
 
 service = Service(
-    executable_path="/Users/joshcooper/item_in_stock_notifier/geckodriver"
+    log_output="geckodriver.log",
+    executable_path="/Users/joshcooper/item_in_stock_notifier/geckodriver",
 )
 options = Options()
 options.add_argument("--headless")
