@@ -11,12 +11,12 @@ import time
 
 
 service = Service(
-    executable_path="/Users/joshcooper/item_in_stock_notifier/chromedriver"
+    executable_path="/Users/joshcooper/item_in_stock_notifier/geckodriver"
 )
 options = Options()
 options.add_argument("--headless")
 
-driver = webdriver.Firefox(options=options)
+driver = webdriver.Firefox(options=options, service=service)
 # driver = webdriver.Firefox()
 
 limit = 1000
