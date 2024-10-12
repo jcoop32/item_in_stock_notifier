@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
-
+from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.firefox.options import Options
 
 from send_text import send_message_one, send_message
@@ -16,7 +16,7 @@ service = Service(
 )
 options = Options()
 options.add_argument("--headless")
-
+options.binary_location = "/opt/firefox/firefox"
 driver = webdriver.Firefox(options=options, service=service)
 # driver = webdriver.Firefox()
 
@@ -71,4 +71,13 @@ def test_site():
     time.sleep(3)
     print(f"Refresh Complete. \n On {driver.current_url}")
     print("Test Complete")
+    driver.quit()
+
+
+try:
+    driver = webdriver.Firefox(options=options, service=service)
+    test_site()
+except WebDriverException as e:
+    print(f"WebDriverException occurred: {e}")
+finally:
     driver.quit()
