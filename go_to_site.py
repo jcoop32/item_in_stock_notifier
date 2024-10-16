@@ -16,8 +16,7 @@ service = Service(
 )
 options = Options()
 options.add_argument("--headless")
-options.binary_location = "/opt/firefox/firefox"
-driver = webdriver.Firefox(options=options, service=service)
+driver = webdriver.Firefox(options=options)
 # driver = webdriver.Firefox()
 
 limit = 1000
@@ -31,34 +30,38 @@ def go_to_site(url):
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
     btn_inner_text = add_to_cart_btn.get_attribute("innerHTML")
     print(f"Inner Text: {btn_inner_text}")
-    print("STARTING REFRESH PHASE...")
-    for x in range(0, limit):
-        countdown(int(10))
-        if btn_inner_text != "Out Of Stock":
-            time.sleep(1)
-            # send_message(
-            #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
-            # )
-            send_message_one("2242458826", "att", f"Item back in stock go to \n{url}")
-        if x % 3 == 0:
-            time.sleep(1)
-            item_status = (
-                "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
-            )
-            # send_message(
-            #     "2242458826",
-            #     "8473854005",
-            #     "att",
-            #     f"Update on item: {item_status} \n {url}",
-            # )
-            send_message_one(
-                "2242458826", "att", f"Update on item: {item_status} \n {url}"
-            )
-        print("refreshing...")
-        driver.refresh()
-        print("refreshed")
-        x += 1
-        print("refresh " + str(x))
+    if btn_inner_text == "<span>Out Of Stock<span/>":
+        print("Says with span")
+    elif btn_inner_text == "Out Of Stock":
+        print("Says without span")
+    # print("STARTING REFRESH PHASE...")
+    # for x in range(0, limit):
+    #     countdown(int(10))
+    #     if btn_inner_text != "Out Of Stock":
+    #         time.sleep(1)
+    #         # send_message(
+    #         #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
+    #         # )
+    #         send_message_one("2242458826", "att", f"Item back in stock go to \n{url}")
+    #     if x % 3 == 0:
+    #         time.sleep(1)
+    #         item_status = (
+    #             "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
+    #         )
+    #         # send_message(
+    #         #     "2242458826",
+    #         #     "8473854005",
+    #         #     "att",
+    #         #     f"Update on item: {item_status} \n {url}",
+    #         # )
+    #         send_message_one(
+    #             "2242458826", "att", f"Update on item: {item_status} \n {url}"
+    #         )
+    #     print("refreshing...")
+    #     driver.refresh()
+    #     print("refreshed")
+    #     x += 1
+    #     print("refresh " + str(x))
 
 
 def test_site():
@@ -70,14 +73,9 @@ def test_site():
     driver.refresh()
     time.sleep(3)
     print(f"Refresh Complete. \n On {driver.current_url}")
-    print("Test Complete")
-    driver.quit()
-
-
-try:
-    driver = webdriver.Firefox(options=options, service=service)
-    test_site()
-except WebDriverException as e:
-    print(f"WebDriverException occurred: {e}")
-finally:
+    logo = driver.find_elements(by=By.CLASS_NAME, value="lnXdpd")
+    if len(logo) == 1:
+        print("Test passed: Logo found")
+    else:
+        print("Test failed: Logo not found!")
     driver.quit()
