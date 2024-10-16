@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 
-from send_text import send_message_one, send_message
+from send_text_u import send_message_one, send_message
 from refresh_page import countdown
 
 import time
