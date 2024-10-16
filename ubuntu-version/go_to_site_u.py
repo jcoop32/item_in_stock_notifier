@@ -47,39 +47,39 @@ def go_to_site(url):
     elif btn_inner_text == "Out Of Stock":
         print("Says without span")
     print("STARTING REFRESH PHASE...")
-    for x in range(0, limit):
-        countdown(int(60))
-        if btn_inner_text != "Out Of Stock":
-            time.sleep(1)
-            # send_message(
-            #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
-            # )
-            send_message_one(
-                "2242458826",
-                "att",
-                f"Current time and date: {formatted_date},{formatted_time}\nItem back in stock go to \n{url}",
-            )
-        if x % 60 == 0:
-            time.sleep(1)
-            item_status = (
-                "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
-            )
-            # send_message(
-            #     "2242458826",
-            #     "8473854005",
-            #     "att",
-            #     f"Update on item: {item_status} \n {url}",
-            # )
-            send_message_one(
-                "2242458826",
-                "att",
-                f"Current time: {formatted_date},{formatted_time}\nUpdate on item: {item_status} \n {url}",
-            )
-        print("refreshing...")
-        driver.refresh()
-        print("refreshed")
-        x += 1
-        print("refresh " + str(x))
+    # for x in range(0, limit):
+    #     countdown(int(60))
+    #     if btn_inner_text != "Out Of Stock":
+    #         time.sleep(1)
+    #         # send_message(
+    #         #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
+    #         # )
+    #         send_message_one(
+    #             "2242458826",
+    #             "att",
+    #             f"Current time and date: {formatted_date},{formatted_time}\nItem back in stock go to \n{url}",
+    #         )
+    #     if x % 60 == 0:
+    #         time.sleep(1)
+    #         item_status = (
+    #             "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
+    #         )
+    #         # send_message(
+    #         #     "2242458826",
+    #         #     "8473854005",
+    #         #     "att",
+    #         #     f"Update on item: {item_status} \n {url}",
+    #         # )
+    #         send_message_one(
+    #             "2242458826",
+    #             "att",
+    #             f"Current time: {formatted_date},{formatted_time}\nUpdate on item: {item_status} \n {url}",
+    #         )
+    #     print("refreshing...")
+    #     driver.refresh()
+    #     print("refreshed")
+    #     x += 1
+    #     print("refresh " + str(x))
 
 
 def test_site():
