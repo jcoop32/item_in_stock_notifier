@@ -46,6 +46,8 @@ def go_to_site(url):
         print("Says with span")
     elif btn_inner_text == "Out Of Stock":
         print("Says without span")
+    else:
+        print("Neither options")
     print("STARTING REFRESH PHASE...")
     # for x in range(0, limit):
     #     countdown(int(60))
