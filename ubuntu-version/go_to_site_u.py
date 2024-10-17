@@ -14,8 +14,8 @@ import datetime
 now = datetime.datetime.now()
 
 # Format the date and time
-formatted_date = now.strftime("%Y-%m-%d")
-formatted_time = now.strftime("%H:%M")
+formatted_date = now.strftime("%A, %B %d, %Y")
+formatted_time = now.strftime("%I:%M %p")
 
 service = Service(
     log_output="geckodriver.log",

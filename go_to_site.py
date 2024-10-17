@@ -8,6 +8,7 @@ from send_text import send_message_one, send_message
 from refresh_page import countdown
 
 import time
+import datetime
 
 
 service = Service(
@@ -21,10 +22,18 @@ driver = webdriver.Firefox(options=options)
 
 limit = 1000
 
+now = datetime.datetime.now()
+
+# Format the date and time
+formatted_date = now.strftime("%A, %B %d, %Y")
+formatted_time = now.strftime("%I:%M %p")
+
 
 def go_to_site(url):
     driver.get(url)
     print(f"On {url}")
+    print(formatted_date)
+    print(formatted_time)
     # send_message_one("2242458826", "att", f"Program Started, On {url}")
     time.sleep(2)
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
