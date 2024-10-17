@@ -8,10 +8,10 @@ from refresh_page import countdown
 
 import time
 
-import datetime
+import datetime, timedelta
 
 # Get the current date and time
-now = datetime.datetime.now()
+now = datetime.datetime.now() - timedelta(hours=5)
 
 # Format the date and time
 formatted_date = now.strftime("%A, %B %d, %Y")
