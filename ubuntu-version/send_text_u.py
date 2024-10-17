@@ -22,7 +22,7 @@ PASSWORD2 = conf["gmail_creds2"]["password"]
 
 def send_message(phone_number, phone_number2, carrier, msg):
     recipient = phone_number + CARRIERS[carrier], phone_number2 + CARRIERS[carrier]
-    auth = (EMAIL2, PASSWORD2)
+    auth = (EMAIL1, PASSWORD1)
 
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
@@ -37,7 +37,7 @@ def send_message(phone_number, phone_number2, carrier, msg):
 
 def send_message_one(phone_number, carrier, msg):
     recipient = phone_number + CARRIERS[carrier]
-    auth = (EMAIL2, PASSWORD2)
+    auth = (EMAIL1, PASSWORD1)
 
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.starttls()
