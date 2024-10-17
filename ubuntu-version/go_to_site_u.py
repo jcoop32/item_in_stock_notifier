@@ -33,23 +33,17 @@ limit = 1000
 def go_to_site(url):
     driver.get(url)
     print(f"On {url}")
+    current_time = f"{formatted_date}, {formatted_time}"
     send_message_one(
         "2242458826",
         "att",
-        f"Current time: {formatted_date}, {formatted_time}\nProgram Started, On {url}",
+        f"Program Started on {current_time}",
     )
     time.sleep(2)
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
-    btn_inner_text = add_to_cart_btn.get_attribute("innerText")
-    if btn_inner_text.strip() == "<span>Out Of Stock</span>":
-        print("Says with span")
-    elif btn_inner_text.strip() == "Out Of Stock":
-        print("Says without span")
-    else:
-        print("Neither options")
-        print(btn_inner_text)
-        print(len(btn_inner_text.strip()))
-    print("STARTING REFRESH PHASE...")
+    btn_inner_text = add_to_cart_btn.get_attribute("innerText").strip()
+    print(btn_inner_text)
+    # print("STARTING REFRESH PHASE...")
     # for x in range(0, limit):
     #     countdown(int(60))
     #     if btn_inner_text != "OUT OF STOCK":
@@ -60,7 +54,7 @@ def go_to_site(url):
     #         send_message_one(
     #             "2242458826",
     #             "att",
-    #             f"Current time and date: {formatted_date},{formatted_time}\nItem back in stock go to \n{url}",
+    #             f"ITEM BACK IN STOCK HURRY GO TO: \n{url}\nCurrent time: {current_time}",
     #         )
     #     if x % 60 == 0:
     #         time.sleep(1)
@@ -76,7 +70,7 @@ def go_to_site(url):
     #         send_message_one(
     #             "2242458826",
     #             "att",
-    #             f"Current time: {formatted_date},{formatted_time}\nUpdate on item: {item_status} \n {url}",
+    #             f"Current time: {current_time}\nUpdate on item: {item_status} \n {url}",
     #         )
     #     print("refreshing...")
     #     driver.refresh()
