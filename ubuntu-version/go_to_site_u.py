@@ -48,7 +48,7 @@ def go_to_site(url):
     # inner text: Out Of Stock
     print("STARTING REFRESH PHASE...")
     for x in range(0, limit):
-        countdown(int(60))
+        countdown(int(120))
         if btn_inner_text != "Out Of Stock":
             time.sleep(1)
             send_message(
@@ -62,7 +62,7 @@ def go_to_site(url):
             #     "att",
             #     f"ITEM BACK IN STOCK HURRY GO TO: \n{url}\nCurrent time: {current_time}",
             # )
-        if x % 2 == 0:
+        if x % 60 == 0:
             time.sleep(1)
             item_status = (
                 "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
