@@ -43,11 +43,12 @@ def go_to_site(url):
     btn_inner_text = add_to_cart_btn.get_attribute("innerText")
     if btn_inner_text == "<span>Out Of Stock</span>":
         print("Says with span")
-    elif btn_inner_text == "OUT OF STOCK":
+    elif btn_inner_text == "Out Of Stock":
         print("Says without span")
     else:
         print("Neither options")
         print(btn_inner_text)
+        print(len(btn_inner_text))
     print("STARTING REFRESH PHASE...")
     # for x in range(0, limit):
     #     countdown(int(60))
