@@ -51,7 +51,12 @@ def go_to_site(url):
         countdown(int(60))
         if btn_inner_text != "Out Of Stock":
             time.sleep(1)
-            send_message(my_num, kayla_num, "att", f"Item back in stock go to \n{url}")
+            send_message(
+                my_num,
+                kayla_num,
+                "att",
+                f"Item back in stock go to \n{url}\nCurrent time: {current_time}",
+            )
             # send_message_one(
             #     my_num,
             #     "att",
@@ -63,7 +68,10 @@ def go_to_site(url):
                 "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
             )
             send_message(
-                my_num, kayla_num, "att", f"Update on item: {item_status} \n {url}"
+                my_num,
+                kayla_num,
+                "att",
+                f"Update on item: {item_status} \n {url}\nCurrent time: {current_time}",
             )
             # send_message_one(
             #     my_num,
