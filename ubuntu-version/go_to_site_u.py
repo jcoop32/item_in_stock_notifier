@@ -8,7 +8,8 @@ from refresh_page import countdown
 
 import time
 
-import datetime, timedelta
+import datetime
+from datetime import timedelta
 
 # Get the current date and time
 now = datetime.datetime.now() - timedelta(hours=5)
