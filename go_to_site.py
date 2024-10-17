@@ -25,14 +25,14 @@ limit = 1000
 def go_to_site(url):
     driver.get(url)
     print(f"On {url}")
-    send_message_one("2242458826", "att", f"Program Started, On {url}")
+    # send_message_one("2242458826", "att", f"Program Started, On {url}")
     time.sleep(2)
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
-    btn_inner_text = add_to_cart_btn.get_attribute("innerHTML")
+    btn_inner_text = add_to_cart_btn.get_attribute("innerText")
     print(f"Inner Text: {btn_inner_text}")
     if btn_inner_text == "<span>Out Of Stock</span>":
         print("Says with span")
-    elif btn_inner_text == "Out Of Stock":
+    elif btn_inner_text == "OUT OF STOCK":
         print("Says without span")
     # print("STARTING REFRESH PHASE...")
     # for x in range(0, limit):

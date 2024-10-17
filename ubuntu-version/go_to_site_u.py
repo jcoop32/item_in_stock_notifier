@@ -40,10 +40,10 @@ def go_to_site(url):
     )
     time.sleep(2)
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
-    btn_inner_text = add_to_cart_btn.get_attribute("innerHTML")
+    btn_inner_text = add_to_cart_btn.get_attribute("innerText")
     if btn_inner_text == "<span>Out Of Stock</span>":
         print("Says with span")
-    elif btn_inner_text == "Out Of Stock":
+    elif btn_inner_text == "OUT OF STOCK":
         print("Says without span")
     else:
         print("Neither options")
@@ -51,7 +51,7 @@ def go_to_site(url):
     print("STARTING REFRESH PHASE...")
     # for x in range(0, limit):
     #     countdown(int(60))
-    #     if btn_inner_text != "Out Of Stock":
+    #     if btn_inner_text != "OUT OF STOCK":
     #         time.sleep(1)
     #         # send_message(
     #         #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
