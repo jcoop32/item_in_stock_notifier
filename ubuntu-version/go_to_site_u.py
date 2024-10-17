@@ -15,7 +15,7 @@ now = datetime.datetime.now()
 
 # Format the date and time
 formatted_date = now.strftime("%Y-%m-%d")
-formatted_time = now.strftime("%H:%M:%S")
+formatted_time = now.strftime("%H:%M")
 
 service = Service(
     log_output="geckodriver.log",
@@ -23,19 +23,20 @@ service = Service(
 )
 options = Options()
 options.add_argument("--headless")
-# options.binary_location = "/opt/firefox/firefox"
 driver = webdriver.Firefox(options=options, service=service)
-# driver = webdriver.Firefox()
 
 limit = 1000
+my_num = "2242458826"
+kayla_num = "8473854005"
 
 
 def go_to_site(url):
     driver.get(url)
     print(f"On {url}")
-    current_time = f"{formatted_date}, {formatted_time}"
-    send_message_one(
-        "2242458826",
+    current_time = f"{formatted_date} at, {formatted_time}"
+    send_message(
+        my_num,
+        kayla_num,
         "att",
         f"Program Started on {current_time}",
     )
@@ -43,40 +44,35 @@ def go_to_site(url):
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
     btn_inner_text = add_to_cart_btn.get_attribute("innerText").strip()
     print(btn_inner_text)
-    # print("STARTING REFRESH PHASE...")
-    # for x in range(0, limit):
-    #     countdown(int(60))
-    #     if btn_inner_text != "OUT OF STOCK":
-    #         time.sleep(1)
-    #         # send_message(
-    #         #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
-    #         # )
-    #         send_message_one(
-    #             "2242458826",
-    #             "att",
-    #             f"ITEM BACK IN STOCK HURRY GO TO: \n{url}\nCurrent time: {current_time}",
-    #         )
-    #     if x % 60 == 0:
-    #         time.sleep(1)
-    #         item_status = (
-    #             "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
-    #         )
-    #         # send_message(
-    #         #     "2242458826",
-    #         #     "8473854005",
-    #         #     "att",
-    #         #     f"Update on item: {item_status} \n {url}",
-    #         # )
-    #         send_message_one(
-    #             "2242458826",
-    #             "att",
-    #             f"Current time: {current_time}\nUpdate on item: {item_status} \n {url}",
-    #         )
-    #     print("refreshing...")
-    #     driver.refresh()
-    #     print("refreshed")
-    #     x += 1
-    #     print("refresh " + str(x))
+    # inner text: Out Of Stock
+    print("STARTING REFRESH PHASE...")
+    for x in range(0, limit):
+        countdown(int(60))
+        if btn_inner_text != "Out Of Stock":
+            time.sleep(1)
+            send_message(my_num, kayla_num, "att", f"Item back in stock go to \n{url}")
+            # send_message_one(
+            #     my_num,
+            #     "att",
+            #     f"ITEM BACK IN STOCK HURRY GO TO: \n{url}\nCurrent time: {current_time}",
+            # )
+        if x % 2 == 0:
+            time.sleep(1)
+            item_status = (
+                "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
+            )
+            send_message(
+                my_num, kayla_num, "att", f"Update on item: {item_status} \n {url}"
+            )
+            # send_message_one(
+            #     my_num,
+            #     "att",
+            #     f"Current time: {current_time}\nUpdate on item: {item_status} \n {url}",
+            # )
+        print("refreshing...")
+        driver.refresh()
+        x += 1
+        print(f"refresh {x}")
 
 
 def test_site():

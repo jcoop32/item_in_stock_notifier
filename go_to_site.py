@@ -28,40 +28,38 @@ def go_to_site(url):
     # send_message_one("2242458826", "att", f"Program Started, On {url}")
     time.sleep(2)
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
-    btn_inner_text = add_to_cart_btn.get_attribute("innerText")
-    print(f"Inner Text: {btn_inner_text}")
-    if btn_inner_text == "<span>Out Of Stock</span>":
-        print("Says with span")
-    elif btn_inner_text == "OUT OF STOCK":
-        print("Says without span")
-    # print("STARTING REFRESH PHASE...")
-    # for x in range(0, limit):
-    #     countdown(int(10))
-    #     if btn_inner_text != "Out Of Stock":
-    #         time.sleep(1)
-    #         # send_message(
-    #         #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
-    #         # )
-    #         send_message_one("2242458826", "att", f"Item back in stock go to \n{url}")
-    #     if x % 3 == 0:
-    #         time.sleep(1)
-    #         item_status = (
-    #             "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
-    #         )
-    #         # send_message(
-    #         #     "2242458826",
-    #         #     "8473854005",
-    #         #     "att",
-    #         #     f"Update on item: {item_status} \n {url}",
-    #         # )
-    #         send_message_one(
-    #             "2242458826", "att", f"Update on item: {item_status} \n {url}"
-    #         )
-    #     print("refreshing...")
-    #     driver.refresh()
-    #     print("refreshed")
-    #     x += 1
-    #     print("refresh " + str(x))
+    btn_inner_text = add_to_cart_btn.get_attribute("innerText").strip()
+    print(btn_inner_text)
+    # inner text is OUT OF STOCK
+    print("STARTING REFRESH PHASE...")
+    for x in range(1, limit):
+        countdown(int(180))
+        if btn_inner_text != "OUT OF STOCK":
+            time.sleep(1)
+            # send_message(
+            #     "2242458826", "8473854005", "att", f"Item back in stock go to \n{url}"
+            # )
+            # send_message_one("2242458826", "att", f"Item back in stock go to \n{url}")
+            print("Item back in stock")
+        if x % 60 == 0:
+            time.sleep(1)
+            item_status = (
+                "Back in Stock" if btn_inner_text == "Add to Cart" else btn_inner_text
+            )
+            # send_message(
+            #     "2242458826",
+            #     "8473854005",
+            #     "att",
+            #     f"Update on item: {item_status} \n {url}",
+            # )
+            # send_message_one(
+            #     "2242458826", "att", f"Update on item: {item_status} \n {url}"
+            # )
+            print(f"Item update: {item_status}")
+        print("refreshing...")
+        driver.refresh()
+        x += 1
+        print("refresh " + str(x))
 
 
 def test_site():
