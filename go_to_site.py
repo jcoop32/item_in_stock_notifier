@@ -30,7 +30,7 @@ def go_to_site(url):
     add_to_cart_btn = driver.find_element(by=By.ID, value="product-addtocart-button")
     btn_inner_text = add_to_cart_btn.get_attribute("innerHTML")
     print(f"Inner Text: {btn_inner_text}")
-    if btn_inner_text == "<span>Out Of Stock<span/>":
+    if btn_inner_text == "<span>Out Of Stock</span>":
         print("Says with span")
     elif btn_inner_text == "Out Of Stock":
         print("Says without span")
