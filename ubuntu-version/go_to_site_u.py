@@ -26,7 +26,7 @@ options = Options()
 options.add_argument("--headless")
 driver = webdriver.Firefox(options=options, service=service)
 
-limit = 12
+limit = 11
 my_num = "2242458826"
 kayla_num = "8473854005"
 
